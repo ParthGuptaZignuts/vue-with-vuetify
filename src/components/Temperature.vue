@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed} from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   Output: {
@@ -28,45 +28,55 @@ const getDayName = () => {
 
   switch (dayOfWeek) {
     case 0:
-      return 'Sunday';
+      return "Sunday";
     case 1:
-      return 'Monday';
+      return "Monday";
     case 2:
-      return 'Tuesday';
+      return "Tuesday";
     case 3:
-      return 'Wednesday';
+      return "Wednesday";
     case 4:
-      return 'Thursday';
+      return "Thursday";
     case 5:
-      return 'Friday';
+      return "Friday";
     case 6:
-      return 'Saturday';
+      return "Saturday";
     default:
-      return '';
+      return "";
   }
 };
 
 const getCurrentTime = () => {
-  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-  return new Date().toLocaleTimeString('en-US', options);
+  const options = { hour: "numeric", minute: "numeric", hour12: true };
+  return new Date().toLocaleTimeString("en-US", options);
 };
-
 </script>
 
 <template>
-    <div style="text-align: center;">
-        <h1 style="font-size:50px;">{{ temperatureInCelsius }}</h1>
-        <hr style="background-color: black;">
-        <div>
-            <p>{{ fullDate }}</p>
-            <h1 style="font-size: 30px;">{{ getDayName() }} , {{ getCurrentTime() }} </h1>
-        </div>
-        <div>
-            <p>{{ props.Output.name }} , {{ props.Output.sys.country }}</p>
-        </div>
+  <div class="main" style="text-align: center">
+    <div>
+      <h1 style="font-size: 70px; font-weight: bolder">
+        {{ temperatureInCelsius }} C
+      </h1>
+      <hr style="background-color: black" />
     </div>
+    <div>
+      <p>{{ fullDate }}</p>
+      <h1 style="font-size: 30px">
+        {{ getDayName() }} , {{ getCurrentTime() }}
+      </h1>
+    </div>
+    <div>
+      <p>{{ props.Output.name }} , {{ props.Output.sys.country }}</p>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-
+.main {
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 </style>
