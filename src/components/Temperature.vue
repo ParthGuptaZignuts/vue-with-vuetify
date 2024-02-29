@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { ref, onMounted } from 'vue';
+import { format } from 'date-fns';
 
 const props = defineProps({
   Output: {
@@ -17,11 +19,13 @@ const temperatureInCelsius = computed(() => {
   return null;
 });
 
-const date = new Date();
-const currentDate = date.getDate();
-const currentMonth = date.getMonth();
-const currentYear = date.getFullYear();
-const fullDate = `${currentDate} - ${currentMonth} - ${currentYear}`;
+const currentDate = ref(new Date());
+const currentDateFormatted = ref('');
+
+onMounted(() => {
+      // Format the date in (dd-mm-yyyy) format
+      currentDateFormatted.value = format(currentDate.value, 'dd-MM-yyyy');
+    });
 
 const getDayName = () => {
   const dayOfWeek = new Date().getDay();
@@ -61,7 +65,7 @@ const getCurrentTime = () => {
       <hr style="background-color: black" />
     </div>
     <div>
-      <p>{{ fullDate }}</p>
+      <p>{{ currentDateFormatted }}</p>
       <h1 style="font-size: 30px">
         {{ getDayName() }} , {{ getCurrentTime() }}
       </h1>

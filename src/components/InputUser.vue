@@ -2,7 +2,7 @@
 import { ref, defineEmits, Ref } from "vue";
 
 const inputValue: Ref<string | null> = ref<string | null>(null);
-const emit = defineEmits(["submitForm"]);
+const emit= defineEmits(["submitForm"]);
 
 const submitForm = () => {
   if (inputValue.value) {

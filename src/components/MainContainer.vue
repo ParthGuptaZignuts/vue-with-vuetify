@@ -11,7 +11,7 @@ const emitValue = ref<NullableString>(null);
 const sendingOutput = ref<NullableString>(null);
 const errorOutput = ref<string | null>(null);
 
-async function fetchData(inputValue: string): Promise<void> {
+const fetchData = async (inputValue: string): Promise<void>  => {
   emitValue.value = inputValue;
 
   try {
